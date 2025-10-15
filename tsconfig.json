@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "types": ["node", "react", "react-dom"],
+    "target": "ES2022", // modern runtime features; change to "ESNext" if you want bleeding-edge
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true, // recommended for compatibility with commonjs-style default imports
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "NodeNext", // keeps ESM output and matches NodeNext resolution for modern ESM
+    "moduleResolution": "NodeNext", // safe default for bundlers; consider "NodeNext" if you use native ESM in Node
+    "ignoreDeprecations": "6.0",
+    "resolveJsonModule": true,
+    "isolatedModules": true, // required when using Babel (or other single-file transpilers)
+    "noEmit": true, // Babel/webpack handles actual emit
+    "jsx": "react-jsx", // new JSX transform (React 17+)
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["src/pages/*"]
+    },
+    "incremental": true, // speeds up repeated TypeScript checks/builds
+    "noUncheckedIndexedAccess": true, // optional: tighter checking for index access
+    "exactOptionalPropertyTypes": true // optional: pin down behavior of optional properties (TS 4.4+)
+  },
+  "include": ["src/**/*"]
+}
