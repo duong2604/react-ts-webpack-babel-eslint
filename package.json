@@ -1,8 +1,9 @@
 {
   "name": "react-ts-webpack-babel-eslint",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
@@ -11,7 +12,17 @@
     "lint": "eslint --ext js,jsx,ts,tsx src/",
     "lint:fix": "eslint --fix --ext js,jsx,ts,tsx src/",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.less|*.css)\"",
-    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.less|*.css)\""
+    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.less|*.css)\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{css,less}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -48,6 +59,7 @@
     "file-loader": "^6.2.0",
     "globals": "^16.4.0",
     "html-webpack-plugin": "^5.6.4",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "less": "^4.4.2",
     "less-loader": "^12.3.0",

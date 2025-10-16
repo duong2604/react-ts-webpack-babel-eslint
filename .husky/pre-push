@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Get the current branch name
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+echo "🔍 Running lint and prettier checks before pushing branch: $BRANCH_NAME"
+npx lint-staged
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+    echo "❌ Push blocked: please fix lint/prettier errors before pushing."
+    exit 1
+else
+ echo "✅ Lint and prettier checks passed. Proceeding with push."
+fi

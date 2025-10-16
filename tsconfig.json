@@ -19,7 +19,15 @@
     "jsx": "react-jsx", // new JSX transform (React 17+)
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["src/pages/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@assets/*": ["src/assets/*"],
+      "@helpers/*": ["src/helpers/*"]
     },
     "incremental": true, // speeds up repeated TypeScript checks/builds
     "noUncheckedIndexedAccess": true, // optional: tighter checking for index access
