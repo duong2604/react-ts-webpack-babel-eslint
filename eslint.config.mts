@@ -11,6 +11,9 @@ import path from 'path'
 
 export default defineConfig([
   {
+    ignores: ['node_modules/', 'dist/']
+  },
+  {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     languageOptions: {
       globals: {
