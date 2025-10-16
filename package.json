@@ -10,8 +10,8 @@
     "preview": "serve dist/ -s",
     "lint": "eslint --ext js,jsx,ts,tsx src/",
     "lint:fix": "eslint --fix --ext js,jsx,ts,tsx src/",
-    "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\"",
-    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\""
+    "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.less|*.css)\"",
+    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.jsx|*.js|*.less|*.css)\""
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -54,6 +54,7 @@
     "mini-css-extract-plugin": "^2.9.4",
     "prettier": "^3.6.2",
     "serve": "^14.2.5",
+    "style-loader": "^4.0.0",
     "typescript": "^6.0.0-dev.20251015",
     "typescript-eslint": "^8.46.1",
     "webpack": "^5.102.1",

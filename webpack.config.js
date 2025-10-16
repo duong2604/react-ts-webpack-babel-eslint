@@ -8,7 +8,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
 
 // This line lets the editor provide autocomplete/suggestions for the config object below
@@ -36,15 +37,31 @@ module.exports = (env, argv) => {
           use: ['babel-loader'] // transpile TypeScript/React to JavaScript
         },
         {
-          test: /\.(s[ac]ss|css)$/, // match .sass, .scss and .css files
+          test: /\.less$/i,
           use: [
-            MiniCssExtractPlugin.loader,
+            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
             {
-              loader: 'css-loader', // dùng import 'filename.css' trong file tsx, ts
-              options: { sourceMap: !isProduction } // enable source maps in development for easier debugging
+              loader: 'css-loader',
+              options: { sourceMap: !isProduction }
             },
             {
-              loader: 'less-loader', // compile Less to CSS
+              loader: 'less-loader',
+              options: {
+                sourceMap: !isProduction,
+                lessOptions: {
+                  javascriptEnabled: true // ⚡ cần thiết cho @import và biến less
+                }
+              }
+            }
+          ]
+        },
+
+        {
+          test: /\.css$/i,
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+            {
+              loader: 'css-loader',
               options: { sourceMap: !isProduction }
             }
           ]
@@ -55,7 +72,9 @@ module.exports = (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                name: isProduction ? 'static/media/[name].[contenthash:6].[ext]' : '[path][name].[ext]'
+                name: isProduction
+                  ? 'static/media/[name].[contenthash:6].[ext]'
+                  : '[path][name].[ext]'
               }
             }
           ]
@@ -66,7 +85,9 @@ module.exports = (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                name: isProduction ? 'static/fonts/[name].[ext]' : '[path][name].[ext]'
+                name: isProduction
+                  ? 'static/fonts/[name].[ext]'
+                  : '[path][name].[ext]'
               }
             }
           ]
@@ -94,7 +115,9 @@ module.exports = (env, argv) => {
     plugins: [
       // Extract CSS into a separate .css file instead of bundling into JS
       new MiniCssExtractPlugin({
-        filename: isProduction ? 'static/css/[name].[contenthash:6].css' : '[name].css'
+        filename: isProduction
+          ? 'static/css/[name].[contenthash:6].css'
+          : '[name].css'
       }),
       // Load environment variables from a .env file
       new Dotenv(),
@@ -140,7 +163,7 @@ module.exports = (env, argv) => {
     }
     config.optimization = {
       minimizer: [
-        `...`, // Cú pháp kế thừa bộ minimizers mặc định trong webpack 5 (i.e. `terser-webpack-plugin`)
+        `...`, // Syntax to inherit all default minimizers by webpack 5 (i.e. `terser-webpack-plugin`)
         new CssMinimizerPlugin() // minify css
       ]
     }

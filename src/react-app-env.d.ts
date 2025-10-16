@@ -15,3 +15,14 @@ declare module '*.svg' {
   const src: string
   export default src
 }
+
+//css
+declare module '*.less' {
+  const classes: { [key: string]: string }
+  export default classes
+}
+
+declare module '*.css' {
+  const classes: { [key: string]: string }
+  export default classes
+}
